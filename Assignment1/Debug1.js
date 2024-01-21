@@ -27,7 +27,6 @@ myToDo.addTask({
     toString: function() {
         return this.text; //custom toString for the object
     }
-
 });
 myToDo.addTask("Attend meeting at 10 AM");
 myToDo.addTask(["Call John", "Pay bills"]);
