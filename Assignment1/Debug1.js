@@ -4,7 +4,11 @@ function ToDoApp() {
 
 ToDoApp.prototype.addTask = function(task) {
     if (task != null && typeof task === 'object') {
-        this.tasks.push(task.toString());
+        if(typeof task.toString === 'function') {
+            this.tasks.push(task.toString());
+        } else {
+            this.task.push(JSON.stringify(task));
+        }
     } else {
         this.tasks.push(task);
     }
@@ -18,7 +22,12 @@ ToDoApp.prototype.displayTasks = function() {
 
 // Usage
 var myToDo = new ToDoApp();
-myToDo.addTask({ text: "Buy groceries" });
+myToDo.addTask({ 
+    text: "Buy groceries",
+    toString: function() {
+        return this.text; //custom toString for the object
+    }
+});
 myToDo.addTask("Attend meeting at 10 AM");
 myToDo.addTask(["Call John", "Pay bills"]);
 myToDo.displayTasks();
